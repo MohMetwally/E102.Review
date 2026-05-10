@@ -10,8 +10,8 @@
 
 body{
   margin:0;
-  font-family:'Patrick Hand', cursive;
   background:#f5f5f5;
+  font-family:'Patrick Hand', cursive;
 }
 
 .page{
@@ -19,16 +19,16 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:25px;
+  padding:20px;
   box-sizing:border-box;
 }
 
-.question-card{
-  width:90%;
-  max-width:750px;
-  min-height:500px;
+.card{
+  width:92%;
+  max-width:850px;
+  min-height:520px;
   border:5px solid #c40000;
-  border-radius:18px;
+  border-radius:20px;
   padding:35px;
   box-sizing:border-box;
   background:
@@ -36,26 +36,27 @@ body{
       to bottom,
       #fffdf5 0px,
       #fffdf5 34px,
-      #b8d4ff 35px
+      #b7d3ff 35px
     );
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  font-size:30px;
+  box-shadow:0 8px 22px rgba(0,0,0,0.18);
+  font-size:28px;
   line-height:1.5;
 }
 
 h1{
   text-align:center;
   color:#b00000;
-  font-size:44px;
+  font-size:42px;
+  margin-top:0;
 }
 
-.question-number{
+.number{
   color:#b00000;
   font-weight:bold;
 }
 
 .options{
-  margin-top:25px;
+  margin-top:22px;
 }
 
 label{
@@ -70,7 +71,7 @@ input{
 }
 
 .nav{
-  margin-top:35px;
+  margin-top:30px;
   display:flex;
   justify-content:space-between;
 }
@@ -78,8 +79,8 @@ input{
 button{
   font-family:'Patrick Hand', cursive;
   font-size:24px;
-  padding:8px 22px;
-  border-radius:10px;
+  padding:8px 24px;
+  border-radius:12px;
   border:2px solid #b00000;
   background:white;
   color:#b00000;
@@ -93,7 +94,7 @@ button:hover{
 
 .result{
   text-align:center;
-  font-size:38px;
+  font-size:40px;
   color:#b00000;
 }
 </style>
@@ -104,59 +105,78 @@ button:hover{
 <div id="exam"></div>
 
 <script>
-
 const questions = [
-
 {q:"On weekends, we have __________ very early in the morning.",o:["breakfast","lunch","dinner"]},
-
 {q:"They have __________ with their children at home after work.",o:["breakfast","lunch","dinner"]},
-
 {q:"My family and I usually have __________ at home. Restaurants are too busy in the evening.",o:["breakfast","lunch","dinner"]},
-
 {q:"A: What do we need for breakfast?<br>B: Let’s see. We need __________ cereal.",o:["some","any"]},
-
 {q:"Do we have __________ eggs?",o:["some","any"]},
-
 {q:"We have __________ apple.",o:["a","an"]},
-
 {q:"A: I need a snack.<br>B: How about __________ crackers and cheese?",o:["some","any"]},
-
 {q:"A: Do you usually have lunch in the cafeteria?<br>B: No, I don’t have time. I __________ have lunch there.",o:["usually","always","hardly ever"]},
-
 {q:"I __________ pasta for dinner.",o:["sometimes eat","eat sometimes"]},
-
 {q:"Ahmed __________ golf on weekends.",o:["plays","goes"]},
-
 {q:"They sometimes __________ swimming in the pool.",o:["play","go"]},
-
 {q:"A: Can you play the violin?<br>B: Yes, I __________.",o:["can","can’t"]},
-
 {q:"A: Can they play chess?<br>B: No, they __________.",o:["can","can’t"]},
-
 {q:"Can he __________ a cake?",o:["bake","baking"]},
-
 {q:"Are we going to __________ this weekend?",o:["work","working"]},
-
 {q:"__________ they going to cook dinner?",o:["Is","Are"]},
-
 {q:"A: Are you going to exercise this evening?<br>B: Yes, I __________. I’m going to go swimming.",o:["am","’m"]},
-
 {q:"A: I have a headache.<br>B: __________ these pills with some water.",o:["take","use"]},
-
 {q:"A: What’s the matter?<br>B: I don’t feel well. I __________ a stomachache.",o:["have","hurt"]},
-
 {q:"A: How do you feel today?<br>B: Not so good. My eyes are dry, and they __________.",o:["have","hurt"]},
 
-<!-- Questions 21,22,23 Deleted -->
-
 {q:"She __________ sick.",o:["feels","has"]},
-
 {q:"He __________ the flu.",o:["feels","has"]},
-
 {q:"I __________ fine.",o:["feel","have"]},
-
-{q:"You can __________ at a coffee shop.",o:["meet your friends","go to the museum","catch a train"]}
-
+{q:"You can __________ at a coffee shop.",o:["meet your friends","go to the museum","catch a train"]},
+{q:"A: __________ you have a good weekend?<br>B: Not really. I studied all weekend.",o:["Do","Does","Did"]},
+{q:"A: Did they do anything last weekend?<br>B: Yes, they __________ hiking in the woods.",o:["go","went","going"]},
+{q:"A: Did she get anything at the mall?<br>B: No. She went shopping, but she __________ anything.",o:["don't buy","doesn’t buy","didn’t buy"]},
+{q:"A: How was your weekend?<br>B: It was great. I __________ a lot of fun.",o:["had","played","took"]},
+{q:"A: How was your weekend?<br>B: It was great. I __________ a trip.",o:["had","played","took"]},
+{q:"A: How was your weekend?<br>B: It was great. I __________ football.",o:["had","played","took"]},
+{q:"A: How was your weekend?<br>B: It was great. I __________ some new friends.",o:["met","went","took"]},
+{q:"She __________ at home last night. She went to a party.",o:["was","wasn’t","were"]},
+{q:"His parents __________ teachers. They worked at a high school.",o:["was","wasn’t","were"]},
+{q:"__________ Ahmed in class yesterday?",o:["Was","Weren’t","Were"]},
+{q:"A: __________ your parents born in the U.S.?<br>B: No, they weren’t. My parents were born in Japan.",o:["Was","Wasn’t","Were"]},
+{q:"A: Can I speak to Carl, please?<br>B: I’m sorry. He’s __________ his break.",o:["at","in","on"]},
+{q:"A: Hi. Is Tom there?<br>B: Yes, but he can’t come to the phone. He’s __________ the shower.",o:["at","in","on"]},
+{q:"A: Hi. Is Beth in, please?<br>B: No, she’s __________ the mall. Do you want to leave her a message?",o:["at","in","on"]},
+{q:"A: Do you want to go shopping on Saturday?<br>B: I’m sorry, I can’t. I __________ work on Saturday.",o:["’d like to","have to","want to"]},
+{q:"A: What are you going to do tonight?<br>B: I have an important test tomorrow, so I __________ study.",o:["don’t want to","’d love to","need to"]},
+{q:"A: Let’s see a movie.<br>B: I __________, but I can’t.",o:["’d like to","have to","need to"]},
+{q:"A: Do you want to come to a party at my house?<br>B: Thanks. I __________!",o:["’d love to","have to","need to"]},
+{q:"A: Do we have any eggs?<br>B: __________",o:["I don’t like it.","No. We need some.","That’s delicious."]},
+{q:"A: Who can fix a car?<br>B: __________",o:["He can drive.","Olivia can.","Yes, I can."]},
+{q:"A: What sports do you play?<br>B: __________",o:["On Saturdays.","Soccer and golf.","With my friends."]},
+{q:"A: Do you eat salad for lunch?<br>B: __________",o:["It’s good for you.","Sometimes I do.","No, it isn’t."]},
+{q:"A: What city were you born in?<br>B: __________",o:["I was born in the United States.","I was born in Los Angeles.","I was born in 1980."]},
+{q:"A: Why did you become a chef?<br>B: __________",o:["After college.","Because I love to cook.","I was twenty."]},
+{q:"A: Hi, Sarah. It’s Chuck. (Do / Would) you like to have dinner with me tomorrow?<br>B: Sure. (I have / I’d love) to.",o:["Do / I have","Do / I’d love","Would / I have","Would / I’d love"]},
+{q:"A: Hi, Angela. (Do you go / Are you going to go) to the movies tonight?<br>B: Yes, I am. Please meet (I / me) at 7:00.",o:["Do you go / I","Do you go / me","Are you going to go / I","Are you going to go / me"]},
+{q:"A: Hi. This is David and Doreen. Please leave (it / us) a message.<br>B: Hi. It’s Arthur. Do you (want / like) to go to a baseball game on Saturday?",o:["it / want","it / like","us / want","us / like"]},
+{q:"I love blueberries. They’re my favorite _________.",o:["vegetable","fruit","grain"]},
+{q:"Susan is very musical. She can _________.",o:["play soccer","play the violin","ride a horse"]},
+{q:"Nick is nine years old, and he’s in the 4th grade. He’s still in _________.",o:["elementary school","junior high school","high school"]},
+{q:"Toby isn’t in class right now. He’s _________ home.",o:["at","in","on"]},
+{q:"You can buy a sweatshirt in a _________.",o:["gas station","department store","post office"]},
+{q:"My family eats a lot of grains. For example, we eat _________ two times a week.",o:["nuts","pasta","yogurt"]},
+{q:"This weekend, Alex is going to _________ chess.",o:["go","play","do"]},
+{q:"Emily is 17, and she’s in 12th grade. It’s her last year of _________.",o:["elementary school","junior high school","high school"]},
+{q:"Brenda isn’t working right now. She’s _________ vacation.",o:["at","on","in"]},
+{q:"I went to the post office to get some _________.",o:["aspirin","gasoline","stamps"]},
+{q:"A: What do you want for the picnic?<br>B: __________",o:["Let’s take some bread and cheese.","That’s delicious.","I never eat sandwiches."]},
+{q:"A: You can cook very well.<br>B: __________",o:["Oh. Thank you.","Yes, you can.","No, I’m not."]},
+{q:"A: Where do you go swimming?<br>B: __________",o:["In the summer.","At the beach.","On Sundays."]},
+{q:"A: Do you ever play volleyball?<br>B: __________",o:["In my yard.","Yes, I can.","Sometimes I do."]},
+{q:"A: Where were you born?<br>B: __________",o:["In 1988.","In Beijing.","I’m nineteen."]},
+{q:"A: Why did you become an artist?<br>B: __________",o:["It was great.","Because I like to draw.","In New York."]},
+{q:"A: Hi. I’d (like / want) to speak to Paula, please.<br>B: She isn’t here right now, but you can call (her / it) at work.",o:["like / her","like / it","want / her","want / it"]},
+{q:"A: Hi, Mike. (Do you go / Are you going to go) to the beach tomorrow?<br>B: I’m not sure. Call (I / me) tonight.",o:["Do you go / I","Do you go / me","Are you going to go / I","Are you going to go / me"]},
+{q:"A: Hi. This is Dan. Please leave (him / me) a message after the beep.<br>B: Hi, Dan. This is Wendy. Do you (like / want) to come to my house this weekend? Call me. Bye-bye.",o:["him / like","him / want","me / like","me / want"]}
 ];
 
 let current = 0;
@@ -167,22 +187,19 @@ function showQuestion(){
 
   exam.innerHTML = `
   <div class="page">
-    <div class="question-card">
-
+    <div class="card">
       <h1>E102 Review</h1>
 
-      <div>
-        <span class="question-number">
+      <div class="number">
         Question ${current + 1} / ${questions.length}
-        </span>
-
-        <br><br>
-
-        ${q.q}
       </div>
 
+      <br>
+
+      <div>${q.q}</div>
+
       <div class="options">
-        ${q.o.map((opt,i)=>`
+        ${q.o.map(opt => `
           <label>
             <input type="radio" name="q${current}">
             ${opt}
@@ -192,14 +209,12 @@ function showQuestion(){
 
       <div class="nav">
         <button onclick="prevQuestion()">Previous</button>
-
         ${
           current === questions.length - 1
           ? `<button onclick="finishExam()">Finish</button>`
           : `<button onclick="nextQuestion()">Next</button>`
         }
       </div>
-
     </div>
   </div>
   `;
@@ -222,15 +237,15 @@ function prevQuestion(){
 function finishExam(){
   document.getElementById("exam").innerHTML = `
   <div class="page">
-    <div class="question-card result">
-      ✅ Exam Finished
+    <div class="card result">
+      ✅ Exam Finished<br><br>
+      Total Questions: ${questions.length}
     </div>
   </div>
   `;
 }
 
 showQuestion();
-
 </script>
 
 </body>
